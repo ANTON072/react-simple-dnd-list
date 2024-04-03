@@ -1,4 +1,4 @@
-import { useRef, createContext, useContext, useReducer } from "react";
+import { useRef, createContext, useContext, useReducer, useState } from "react";
 
 interface DropResult {
   source: number;
@@ -17,12 +17,6 @@ interface AppContextValue {
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
-
-const items = [
-  { id: 1, name: "item1" },
-  { id: 2, name: "item2" },
-  { id: 3, name: "item3" },
-];
 
 interface DraggableProps {
   draggable: boolean;
@@ -46,6 +40,14 @@ interface DraggableComponentProps {
 interface DragDropContextComponentProps {
   onDragEnd: (result: DropResult) => void;
   children: React.ReactNode;
+}
+
+function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
+  const result = [...list];
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
 }
 
 function reducer(state: DropResult, action: DropAction) {
@@ -140,10 +142,17 @@ function Draggable({ children, index }: DraggableComponentProps) {
 }
 
 function App() {
+  const [items, setItems] = useState([
+    { id: 1, name: "item1" },
+    { id: 2, name: "item2" },
+    { id: 3, name: "item3" },
+  ]);
+
   return (
     <DragDropContext
       onDragEnd={(result) => {
-        console.log("result", result);
+        const newOrder = reorder(items, result.source, result.destination);
+        setItems(newOrder);
       }}
     >
       <ul>
