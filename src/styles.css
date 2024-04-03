@@ -29,5 +29,16 @@ li {
   border: 1px solid #222;
   text-align: center;
   cursor: grab;
-  -webkit-user-drag: element;
+
+  &.id_a {
+    background: #e74c3c;
+  }
+
+  &.id_b {
+    background: #3498db;
+  }
+
+  &.id_c {
+    background: #2ecc71;
+  }
 }
