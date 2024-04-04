@@ -5,16 +5,19 @@ import react from "@vitejs/plugin-react-swc";
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
+    outDir: "dist",
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       name: "SimpleDragAndDropList",
-      fileName: "simple-dnd-list",
+      fileName: "index",
+      formats: ["es", "umd"],
     },
     rollupOptions: {
-      external: ["react"],
+      external: ["react", "react-dom"],
       output: {
         globals: {
           react: "React",
+          "react-dom": "ReactDOM",
         },
       },
     },
