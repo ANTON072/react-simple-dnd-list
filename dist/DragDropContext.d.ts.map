@@ -1,0 +1,1 @@
+{"version":3,"file":"DragDropContext.d.ts","sourceRoot":"","sources":["../src/DragDropContext.tsx"],"names":[],"mappings":";AAEA,OAAO,EAIL,YAAY,EACb,MAAM,WAAW,CAAC;AAEnB,UAAU,KAAK;IACb,QAAQ,EAAE,KAAK,CAAC,SAAS,CAAC;IAC1B,SAAS,EAAE,CAAC,MAAM,EAAE,YAAY,KAAK,IAAI,CAAC;CAC3C;AAaD,iBAAS,eAAe,CAAC,EAAE,QAAQ,EAAE,SAAS,EAAE,EAAE,KAAK,2CA2BtD;AAED,eAAe,eAAe,CAAC"}
