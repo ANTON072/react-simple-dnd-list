@@ -1,0 +1,44 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  line-height: 1;
+  font-size: 16px;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+body {
+  padding: 10px;
+  background: #fff;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  width: 240px;
+  margin-bottom: 3px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #222;
+  text-align: center;
+  cursor: grab;
+
+  &.id_a {
+    background: #e74c3c;
+  }
+
+  &.id_b {
+    background: #3498db;
+  }
+
+  &.id_c {
+    background: #2ecc71;
+  }
+}
