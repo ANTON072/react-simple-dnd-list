@@ -1,17 +1,7 @@
 import { useState } from "react";
 import DragDropContext from "./DragDropContext";
 import Draggable from "./Draggable";
-
-function reorder<T>(
-  list: T[],
-  sourceIndex: number,
-  destinationIndex: number
-): T[] {
-  const targetItem = list[sourceIndex];
-  const resArr = list.map((target, i) => (i === sourceIndex ? null : target));
-  resArr.splice(destinationIndex, 0, targetItem);
-  return resArr.flatMap((target) => (target !== null ? [target] : []));
-}
+import reorder from "./reorder";
 
 function App() {
   const [items, setItems] = useState([
