@@ -41,20 +41,9 @@ function Draggable({ draggableId, index, children }: Props) {
       if (!targetElm) return;
 
       const rect = targetElm.getBoundingClientRect();
-      // targetElm内でのカーソル位置
       const posY = event.clientY - rect.top;
-      // posYのtargetElmの高さに対しての比率
-      // const ratio = posY / rect.height;
-      console.log("posY", posY);
-
       const ratioY = Math.min(1, Math.max(0, posY / rect.height));
-      // console.log("ratioY", ratioY);
-      // 上からの場合ちょっとでも被ると実行してしまうバグがある
-      const destinationIndex = index + Math.round(ratioY) - 1;
-      // console.log("destinationIndex", destinationIndex);
-      // console.log("Math.round(ratioY)", Math.round(ratioY));
-      // console.log("sourceIndex", sourceIndex);
-      // TODO: カーソル位置判定がどうも計算がおかしくなるね。
+      const destinationIndex = index + Math.round(ratioY);
       context.dispatch({
         type: "SET_DESTINATION_INDEX",
         payload: destinationIndex,

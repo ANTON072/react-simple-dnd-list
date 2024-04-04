@@ -48,10 +48,6 @@ function DragDropContext({ children, onDragEnd }: Props) {
       }}
     >
       {children}
-      <div>
-        <p>Source: {store.sourceIndex}</p>
-        <p>Destination: {store.destinationIndex}</p>
-      </div>
     </AppContext.Provider>
   );
 }
