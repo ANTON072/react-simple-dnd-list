@@ -1,30 +1,56 @@
-# React + TypeScript + Vite
+# React Simple DnD List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![スクリーンショット](./docs/screen.gif)
 
-Currently, two official plugins are available:
+- ドラッグアンドドロップで並び替えをするReactコンポーネントライブラリです。
+- スタイルは提供しません。
+- 縦方向のみのシンプルな挙動です。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 使い方
 
-## Expanding the ESLint configuration
+package.json の　dependencies　に以下を追記して `npm install` を実行してください。
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
+```json
+"react-simple-dnd-list": "github:ANTON072/react-simple-dnd-list"
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+サンプルコード
+
+```tsx
+import { useState } from "react";
+import { DragDropContext, Draggable, reorder } from "react-simple-dnd-list";
+
+function App() {
+  const [items, setItems] = useState([
+    { id: "id_a", name: "item1" },
+    { id: "id_b", name: "item2" },
+    { id: "id_c", name: "item3" },
+  ]);
+
+  return (
+    <DragDropContext
+      onDragEnd={(result) => {
+        const newOrder = reorder(
+          items,
+          result.sourceIndex,
+          result.destinationIndex
+        );
+        setItems(newOrder);
+      }}
+    >
+      <ul>
+        {items.map((item, index) => (
+          <Draggable key={item.id} draggableId={item.id} index={index}>
+            {(provided) => (
+              <li className={item.id} {...provided.draggableProps}>
+                {item.name}
+              </li>
+            )}
+          </Draggable>
+        ))}
+      </ul>
+    </DragDropContext>
+  );
+}
+export default App;
+```
