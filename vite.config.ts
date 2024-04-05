@@ -1,15 +1,13 @@
-import { resolve } from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  plugins: [react()],
   build: {
-    outDir: "dist",
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: "./src/index.ts",
       name: "SimpleDragAndDropList",
-      fileName: "index",
       formats: ["es", "umd"],
     },
     rollupOptions: {
@@ -22,5 +20,4 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react()],
 });
